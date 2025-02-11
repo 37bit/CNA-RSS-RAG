@@ -3,13 +3,17 @@ This is a simple Python program that performs RAG on the Channel News Asia RSS f
 
 # How RAG works
 
-1. Break the file into chunks.
-2. Embed each chunk in a vector database (Chroma) using a text embedding model (Nomic by default).
-3. Ask a query.
-4. Map the query to an embedding.
-5. Obtain the top K embeddings most similar to the query embedding.
-6. Pass the query embedding + the K most similar embeddings into the LLM (Mistral by default).
-7. Model will generate a response.
+## Preparing the database
+1. Break the file into chunks
+2. Embed each chunk using a text embedding model ([nomic-embed-text](https://ollama.com/library/nomic-embed-text) by default)
+3. Store each embedding in a vector database ([Chroma](https://github.com/chroma-core/chroma) by default)
+
+## Querying the model
+5. Query the model
+6. Embed the query
+7. Obtain the top K embeddings most similar to the query embedding.
+8. Pass the query embedding + the K embeddings into the model ([mistral](https://ollama.com/library/mistral) by default).
+9. Wait for the model to generate a response
 
 # Running the script
 1. Make sure you have python>=3.6 installed. Then install the required dependencies:
