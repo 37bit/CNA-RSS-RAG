@@ -22,6 +22,7 @@ CHROMA_PATH = os.getenv("CHROMA_PATH", "chroma")
 COLLECTION_NAME = os.getenv("COLLECTION_NAME", "cna-rag")
 EMBED_MODEL = os.getenv("EMBED_MODEL", "nomic-embed-text")
 LLM_MODEL = os.getenv("LLM_MODEL", "mistral")
+K_VALUE = os.getenv("K_SIMILAR", 10)
 USE_EXISTING_DB = os.getenv("USE_EXISTING_DB", False)
 METADATA = os.getenv("METADATA_FILE", "metadata.json")
 
@@ -122,6 +123,7 @@ def addToCollection(db, content):
 
 db = None
 if __name__ == "__main__":
+    k_value = int(K_VALUE)
     save_html = str_to_bool(SAVE_HTML)
     use_existing_db = str_to_bool(USE_EXISTING_DB)
     print('Use existing db:', use_existing_db)
@@ -167,7 +169,7 @@ if __name__ == "__main__":
         query = input("Enter your query: ")
         print('\nEmbedding query...')
         queryEmbed = ollama.embed(model=EMBED_MODEL, input=query)["embeddings"]
-        relatedTexts = db.similarity_search(query=query) # Change k-value to retrieve more similar texts. Default is 4
+        relatedTexts = db.similarity_search(query=query, k=k_value) # Change k-value to retrieve more similar texts. Default is 4
         print("Obtained related texts.")
 
         # Pull LLM_MODEL if it does not already exist

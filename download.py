@@ -36,11 +36,11 @@ def update_downloaded_mt(metadata_file, entry_link, remove=False):
 # Read metadata file to obtain a list of entries that were downloaded today
 def get_downloaded_mt(entries_dir, metadata_file=None):
     if not os.path.exists(metadata_file):
-        print(f"Metadata file {metadata_file} does not exist.")
+        print(f"{metadata_file} does not exist.")
         metadata_entries = {}
 
     else:
-        print(f"Metadata file {metadata_file} discovered.")
+        print(f"{metadata_file} discovered.")
         with open(metadata_file, "r") as f:
             try:
                 metadata_entries = json.load(f)["downloaded_entries"]
@@ -85,7 +85,7 @@ def fetch_and_download(urls, entries_dir, metadata_file, parser, html_dir=None):
     for i, url in enumerate(urls):
 
         # Display download status
-        print("{} - {}".format(i, url))
+        print("{} - {}".format(i+1, url))
 
         # Retrieve url slug
         entry_name = get_slug(url)
