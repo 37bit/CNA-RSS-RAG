@@ -22,7 +22,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
-3. After the program finishes embedding all chunks, you may begin asking queries.
+3. After the program finishes embedding all chunks, you can begin asking queries. \
+\
+![image](https://github.com/user-attachments/assets/8d2e1da7-1a2c-4c06-974f-fd93d582b142)
 
 # Environment variables (.env file)
 **RSS_URL** - 
